@@ -1,39 +1,56 @@
-# Resolve react_native_pods.rb with node to allow for hoisting
+# This Podfile configuration handles React Native dependencies with Node resolution, modular headers, Firebase, and framework linkage if specified.
 require Pod::Executable.execute_command('node', ['-p',
   'require.resolve(
     "react-native/scripts/react_native_pods.rb",
     {paths: [process.argv[1]]},
   )', __dir__]).strip
 
+# Set platform and minimum iOS version
 platform :ios, min_ios_version_supported
 prepare_react_native_project!
 
+# Enable modular headers for compatibility with Swift dependencies
+use_modular_headers!
+
+# Configure optional dynamic framework linkage based on environment variable
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
   Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
   use_frameworks! :linkage => linkage.to_sym
 end
 
+# Main target definition for the React Native project
 target 'PDFManager' do
+  
+  # Config for native modules based on project dependencies
   config = use_native_modules!
 
+  # React Native and app path configurations
   use_react_native!(
     :path => config[:reactNativePath],
-    # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  # Firebase Pods - adjust based on specific Firebase services required
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Analytics'  # Optional - use only if you need Firebase Analytics
+
+  # Test target for 'PDFManagerTests' to inherit all dependencies
   target 'PDFManagerTests' do
     inherit! :complete
-    # Pods for testing
+    # Additional Pods for testing can be added here if needed
   end
 
+  # Post-install block to ensure correct settings for React Native's setup
   post_install do |installer|
-    # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
+    # Apply React Native's post-install script with default configurations
     react_native_post_install(
       installer,
       config[:reactNativePath],
-      :mac_catalyst_enabled => false,
+      :mac_catalyst_enabled => false
+      # Uncomment :ccache_enabled to enable ccache (recommended for large projects)
       # :ccache_enabled => true
     )
   end

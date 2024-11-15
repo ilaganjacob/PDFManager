@@ -36,6 +36,7 @@ target 'PDFManager' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'Firebase/Analytics'  # Optional - use only if you need Firebase Analytics
+  pod 'gRPC-C++', '~> version_number'
 
   # Test target for 'PDFManagerTests' to inherit all dependencies
   target 'PDFManagerTests' do

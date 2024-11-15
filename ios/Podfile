@@ -6,7 +6,7 @@ require Pod::Executable.execute_command('node', ['-p',
   )', __dir__]).strip
 
 # Set platform and minimum iOS version
-platform :ios, min_ios_version_supported
+platform :ios, '11.0'
 prepare_react_native_project!
 
 # Enable modular headers for compatibility with Swift dependencies
@@ -36,7 +36,7 @@ target 'PDFManager' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'Firebase/Analytics'  # Optional - use only if you need Firebase Analytics
-  pod 'gRPC-C++', '~> version_number'
+  pod 'gRPC-C++', '~> 1.65.5'
 
   # Test target for 'PDFManagerTests' to inherit all dependencies
   target 'PDFManagerTests' do

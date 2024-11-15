@@ -6,7 +6,7 @@ require Pod::Executable.execute_command('node', ['-p',
   )', __dir__]).strip
 
 # Set platform and minimum iOS version
-platform :ios, '11.0'
+platform :ios, '15.1'
 prepare_react_native_project!
 
 # Enable modular headers for compatibility with Swift dependencies

@@ -2925,6 +2925,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - fmt (from `../node_modules/react-native/third-party-podspecs/fmt.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - "gRPC-C++ (~> 1.65.5)"
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCT-Folly/Fabric (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
@@ -3253,6 +3254,6 @@ SPEC CHECKSUMS:
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Yoga: db69236006b8b1c6d55ab453390c882306cbf219
 
-PODFILE CHECKSUM: 04a283009908b95545027a5d086e034b20b00d83
+PODFILE CHECKSUM: 2ab8e9e24acfc0ab7a57cc6e578a6b66fb0fb7ea
 
 COCOAPODS: 1.16.2
